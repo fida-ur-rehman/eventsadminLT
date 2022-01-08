@@ -1,0 +1,45 @@
+@import "../../App.scss";
+
+.dashhead{
+    background-color: $purple;
+    color: white;
+    height: 100%;
+    border-bottom-right-radius: 50px;
+    h1{
+        padding-left:10%;
+        padding-top: 12%;
+        font-size: 2.5em;
+
+    }
+    .linkdivActive{
+        background-color: $pink;
+        padding:5%;
+        color:black;
+        font-family: $secondaryFont;
+        font-weight: 800;
+        font-size: 1.5em;
+
+    }
+    .linkdiv{
+        padding:5%;
+        color:white;
+        font-family: $secondaryFont;
+        font-weight: 800;
+        font-size: 1.3em;
+        margin: 5% 0;
+
+    }
+    .linkdiv:hover{
+        transition: .2s;
+        background-color: $pink;
+        padding:5%;
+        color:black;
+        font-family: $secondaryFont;
+        font-weight: 800;
+        font-size: 1.5em;
+        cursor: pointer;
+    }
+    .linksdiv{
+        margin-top: 30%;
+    }
+}

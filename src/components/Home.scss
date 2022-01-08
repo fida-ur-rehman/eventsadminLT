@@ -1,0 +1,38 @@
+@import "../App.scss";
+
+.homeclass{
+    .heading{
+        color:$purple;
+        margin:3% 0;
+    }
+    .event{
+        margin: 3% 0;
+    }
+    .event-item{
+        background: linear-gradient(to bottom right, $lightPink,$extraLightPink);
+        padding:2%;
+        margin:1% 4%;
+        .row{
+            padding:0 2%;
+            .event-heading{
+                font-weight: bolder;
+                font-size: 1.5em;
+                color: $purple;
+            }
+            .bids-subs{
+                margin: 0 auto;
+                font-weight: 500;
+                color:$purple;
+            }
+           
+        }
+       
+        .description{
+            color:#a1a1a1;
+        }
+    }
+    .event-item:hover{
+        cursor: pointer;
+        background: linear-gradient(to bottom right, $pink,$lightPink);
+    }
+}

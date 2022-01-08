@@ -1,0 +1,77 @@
+@import "../../App.scss";
+
+.event-detail{
+    .heading{
+        font-size: 2.5em;
+        color:$purple;
+    }
+    .event-info{
+        margin:.1%;
+        .eventtype{
+            margin-left: 3%;
+        }
+    }
+    .service{
+        margin:1% .1%;
+        .servicetag{
+            background-color: $pink;
+            padding:.5%;
+            font-weight: bolder;
+        }
+    }
+    .organizerinfo{
+        border-radius: 20px;
+        margin:2% 0;
+        background-color: #f7f7f7;
+        padding:2%;
+    }
+    .description{
+        color:rgb(141, 141, 141)
+    }
+
+    .bid-container{
+        background-color: #f7f7f7;
+        margin:5% 3%;
+        padding:3%;
+        border-radius: 20px;
+        .name{
+            font-weight: 800;
+        }
+        .email{
+            color:rgb(121, 121, 121)
+        }
+        .mobile{
+            color:rgb(121, 121, 121)
+        }
+        .org{
+            color:rgb(121, 121, 121)
+        }
+        .profile{
+            width: 100%;
+        }
+        .description{
+            margin:2% 8%;
+            color: black;
+        }
+        .status{
+            font-weight: bold;
+        }
+        .price{
+            color:rgb(0, 153, 0);
+            font-weight: bolder;
+        }
+        .bid{
+            color:#ff8383
+        }
+        .bid:hover{
+            cursor: pointer;
+        }
+        .services-div{
+            margin:2% 7%;
+            .service-container{
+                padding-top: 2%;
+                    border-bottom: 1px solid rgb(224, 224, 224);
+            }
+        }
+    }
+}

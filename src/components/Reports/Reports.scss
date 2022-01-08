@@ -1,0 +1,22 @@
+@import "../../App.scss";
+
+
+.report-detail-heading{
+    color:$purple;
+}
+
+.reports{
+    .heading{
+        color:$purple;
+        margin:3% 3%;
+    }
+}
+.tablediv{
+   
+    margin:3% ;
+    .table-row:hover{
+    background-color: $lightPink;
+    cursor: pointer;
+    }
+    
+}

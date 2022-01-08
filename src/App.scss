@@ -1,0 +1,50 @@
+$purple:#5a1e96;
+$pink:#eedeff;
+$lightPink:#faf5ff;
+$extraLightPink:#fbf7ff;
+$white:#f7f7f7;
+$grey:#a1a1a1;
+
+$primaryFont:'Montserrat', sans-serif;
+$secondaryFont:'Raleway', sans-serif;
+h1{
+  font-family: 'Montserrat', sans-serif;
+
+}
+p{
+  font-family: 'Raleway', sans-serif;
+}
+
+.submit{
+  padding:1.8% 8%; 
+  border-radius: 50px;
+  outline: none;
+  background-color: #5a1e96;
+  border:none;
+  font-family: $primaryFont;
+  color: white;
+  font-weight: 600;
+}
+.submit:hover{
+  cursor: pointer;
+}
+.red-status{
+  color: #ff8383;
+  font-weight: bolder;
+}
+.green-status{
+  color: #5fd46c;
+  font-weight: bolder;
+}
+.bid{
+  color: #ff8383;
+  font-size: 1.5em;
+}
+.bid:hover{
+  color:red;
+  cursor: pointer;
+}
+
+.container100{
+  height: 100vh;
+}

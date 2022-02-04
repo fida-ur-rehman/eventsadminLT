@@ -12,9 +12,6 @@ const Dashhead = ({id,history,height}) => {
                 <p><i className="fas fa-home"></i> <span style={{marginLeft:'10px'}}>Home</span></p>
             </div>
 
-            <div className={id==="2"?"linkdivActive":"linkdiv"} onClick={()=>history.push("/allevents")}>
-                <p><i className="fas fa-calendar-alt"></i> <span style={{marginLeft:'10px'}}>All Events</span></p>
-            </div>
 
             <div className={id==="3"?"linkdivActive":"linkdiv"} onClick={()=>history.push("/reports")}>
                 <p><i className="fas fa-clipboard-list"></i> <span style={{marginLeft:'10px'}}>Reports</span></p>

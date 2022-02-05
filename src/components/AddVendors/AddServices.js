@@ -62,7 +62,7 @@ function AddServices(props) {
             setServices([...service,res.data.result])
         })
         .catch(err=>{
-            console.log(err)
+            console.log(err.response)
         })
        }
         //61d3ec1b9efbdd00043c8031

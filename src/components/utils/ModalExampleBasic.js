@@ -27,7 +27,7 @@ function ModalExampleBasic(props) {
         <Button basic color='red' inverted onClick={() => setOpen(false)}>
           <Icon name='remove' /> No
         </Button>
-        <Button color='green' inverted onClick={() => setOpen(false)}>
+        <Button color='green' inverted onClick={() => props.handleDelete()}>
           <Icon name='checkmark' /> Yes
         </Button>
       </Modal.Actions>

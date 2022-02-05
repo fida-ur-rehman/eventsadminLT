@@ -44,13 +44,13 @@ const Reports = (props) => {
                     {
                         data.length>0?(
                             data.map((item,index)=>(    
-                                   <tr onClick={()=>props.history.push("/reportdetail",item)} className="table-row" key={index}>
+                                   item.status==="None"?<tr onClick={()=>props.history.push("/reportdetail",item)} className="table-row" key={index}>
                                         <td data-label="Sr No">{index+1}</td>
                                         <td data-label="Collection">{item.collectionName}</td>
                                         <td data-label="Reason">{item.reason}</td>
                                         <td data-label="Time">{moment.parseZone(item.createdAt).local().format("dddd, MMMM Do YYYY, h:mm:ss a")}</td>
                                         <td><span className="bid"><i class="fa fa-trash" aria-hidden="true"></i></span></td>
-                                   </tr>
+                                   </tr>:null
                                
                             ))
                         ):null

@@ -1,13 +1,26 @@
 import React from 'react'
 import {useForm} from 'react-hook-form'
 import "./Login.scss"
+import axios from 'axios'
+// /api/admin/login
 
 const Login = (props) => {
-    const {register,handleSubmit,formState:{errors}}=useForm()
+    const {register,handleSubmit,formState:{errors},setError}=useForm()
+
 
     const onSubmit = (data,e)=>{
         console.log(data)
-        props.history.push("/home")
+        axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/admin/login`,{email:data.email,password:data.password})
+        .then(res=>{
+            console.log(res);
+            props.history.push("/home")
+        })
+        .catch(err=>{
+            console.log(err);
+            setError("email")
+            setError("password")
+        })
+//        
     }
     return (
         <div className="logincontainer">

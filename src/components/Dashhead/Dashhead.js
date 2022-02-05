@@ -1,6 +1,7 @@
 import React from 'react';
 import "./Dashhead.scss"
 import {withRouter} from 'react-router'
+import {Button} from '@mui/material'
 
 const Dashhead = ({id,history,height}) => {
     return (
@@ -24,6 +25,12 @@ const Dashhead = ({id,history,height}) => {
             <div className={id==="5"?"linkdivActive":"linkdiv"} onClick={()=>history.push("/addcategories")}>
                 <p><i className="fas fa-clipboard-list"></i> <span style={{marginLeft:'10px'}}>Add Categories</span></p>
             </div>
+
+            <div className={id==="6"?"linkdivActive":"linkdiv"} onClick={()=>history.push("/")}>
+                <p><i class="fas fa-sign-out-alt"></i> <span style={{marginLeft:'10px'}}>Log out</span></p>
+            </div>
+
+            
 
             </div>
         </div>

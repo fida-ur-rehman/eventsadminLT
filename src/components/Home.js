@@ -4,7 +4,8 @@ import Dashhead from './Dashhead/Dashhead';
 import GoogleMapReact from 'google-map-react';
 import axios from 'axios'
 import moment from 'moment'
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+import OwnMarker from './utils/Marker/OwnMarker';
+import Marker from './utils/Marker/Marker'
 
 const Home = (props) => {
     const [location,setLocation]=React.useState({center:{lat:59.95,lng:30.33},zoom:11})
@@ -37,15 +38,22 @@ const Home = (props) => {
             </h1>
             <div style={{ height: '50vh', width: '100%' }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyCon5_1FtHKMlr3goiHqkWjaD63WSCvxJE'}}
+          bootstrapURLKeys={{ key: 'AIzaSyBOzAkOqCVMjP4hXIkabfHi40vJ8afKKZ4'}}
           defaultCenter={location.center}
           defaultZoom={location.zoom}
         >
-          <AnyReactComponent
-            lat={59.955413}
-            lng={30.337844}
-            text="My Marker"
+           <OwnMarker 
+      lat = {location.center.lat}
+      lng={location.center.lng}
+      text="My Location"
+      />
+          {data.map((marker,index)=>(
+            <Marker
+            lat={marker.location.latitude}
+            lng={marker.location.longitude}
+            text={marker.name}
           />
+          ))}
         </GoogleMapReact>
       </div>
 

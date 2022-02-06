@@ -37,20 +37,21 @@ const Reports = (props) => {
                                         <th>Collection</th>
                                         <th>Reason</th>
                                         <th>Time</th>
-                                        <th></th>
+                                        <th>Status</th>
                                     </tr>
                                </thead>
                     <tbody>
                     {
                         data.length>0?(
                             data.map((item,index)=>(    
-                                   item.status==="None"?<tr onClick={()=>props.history.push("/reportdetail",item)} className="table-row" key={index}>
+                                  <tr onClick={()=>props.history.push("/reportdetail",item)} className="table-row" key={index}>
                                         <td data-label="Sr No">{index+1}</td>
                                         <td data-label="Collection">{item.collectionName}</td>
                                         <td data-label="Reason">{item.reason}</td>
                                         <td data-label="Time">{moment.parseZone(item.createdAt).local().format("dddd, MMMM Do YYYY, h:mm:ss a")}</td>
-                                        <td><span className="bid"><i class="fa fa-trash" aria-hidden="true"></i></span></td>
-                                   </tr>:null
+                                        <td data-label="Status">{item.status}</td>
+                                        
+                                   </tr>
                                
                             ))
                         ):null

@@ -102,11 +102,11 @@ const ReportDetail = (props) => {
                 
                 <div className="row" style={{marginTop:30}}>
                 <h1 className="col-8 report-detail-heading">Report Details</h1>
-                <ModalExampleBasic component={<span className="bid"><i class="fa fa-trash" aria-hidden="true"></i></span>}
+                {detail.status!=="Deleted"?<ModalExampleBasic component={<span className="bid"><i class="fa fa-trash" aria-hidden="true"></i></span>}
                                 title="Delete Bid"
                                 handleDelete = {handleDelete}
                                 description="Are you sure, you want to delete this bid?"
-                                />
+                                />:null}
                 </div>
                 <h2>{detail.collectionName}</h2>
                 <h3>{detail.reason}</h3>

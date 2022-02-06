@@ -2,6 +2,8 @@ import React from 'react'
 import {useForm} from 'react-hook-form'
 import "./Login.scss"
 import axios from 'axios'
+import { setUser } from '../redux/user/userActions'
+import {connect} from 'react-redux'
 // /api/admin/login
 
 const Login = (props) => {
@@ -13,6 +15,7 @@ const Login = (props) => {
         axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/admin/login`,{email:data.email,password:data.password})
         .then(res=>{
             console.log(res);
+            props.setUser(res.data.token)
             props.history.push("/home")
         })
         .catch(err=>{
@@ -45,5 +48,10 @@ const Login = (props) => {
         </div>
     );
 }
+const mapDispatchToProps = (dispatch)=>{
+return {
+    setUser:(user)=>dispatch(setUser(user))
+}
+}
 
-export default Login;
+export default connect(null,mapDispatchToProps)(Login);

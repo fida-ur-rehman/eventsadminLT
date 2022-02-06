@@ -8,9 +8,16 @@ import ModalExampleBasic from '../utils/ModalExampleBasic';
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
+
+
+
 const EventDetail = (props) => {
     let event = props.location.state
     console.log("props",props);
+
+    const handleDelete = ()=>{
+        
+    }
     return (
         <div>
             <div className="row">
@@ -85,11 +92,12 @@ const EventDetail = (props) => {
 
                                 <p className="status col-2">{item.status}</p>
                                 <p className="price col-2">{item.totalPrice}$</p>
-                                <p className="col-2">
+                                {/* <p className="col-2">
                                 <ModalExampleBasic component={<span className="bid"><i class="fa fa-trash" aria-hidden="true"></i></span>}
                                 title="Delete Bid"
                                 description="Are you sure, you want to delete this bid?"
-                                /></p>
+                                handleDelete = {handleDelete}
+                                /></p> */}
                                 {
                                     // <span className="bid"><i class="fa fa-trash" aria-hidden="true"></i></span>
                                 }

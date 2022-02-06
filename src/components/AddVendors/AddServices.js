@@ -15,6 +15,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Autocomplete from '@mui/material/Autocomplete';
 import DoneIcon from '@mui/icons-material/Done';
+import {connect} from 'react-redux'
 //"61d87a153e5888396864922e"
 function AddServices(props) {
     console.log(props);
@@ -56,7 +57,7 @@ function AddServices(props) {
         if(arr.length>0){
             categoryId=arr[0]._id
         }
-        axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/service/admin-createService`,{userId:userInfo._id,mobileNo:userInfo.mobileNo,categoryId,category:mainCategoryR,subCategory:data.subcategory,quantity:data.quantity,unit,price:data.price})
+        axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/service/admin-createService`,{userId:userInfo._id,mobileNo:userInfo.mobileNo,categoryId:categoryId?categoryId:"",category:mainCategoryR,subCategory:data.subcategory,quantity:data.quantity,unit,price:data.price},{headers:{token:props.user.user}})
         .then(res=>{
             console.log(res)
             setServices([...service,res.data.result])
@@ -172,4 +173,11 @@ function AddServices(props) {
     )
 }
 
-export default AddServices
+
+const mapStateToProps = ({EventUser})=>{
+    return {
+        user:EventUser
+    }
+}
+
+export default connect(mapStateToProps)(AddServices)

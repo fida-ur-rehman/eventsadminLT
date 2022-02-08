@@ -98,7 +98,7 @@ const ReportDetail = (props) => {
                 <div className="col-2">
                 <Dashhead id="3" />
                 </div>
-                <div className="col-10">
+                <div className="col-10 container100">
                 
                 <div className="row" style={{marginTop:30}}>
                 <h1 className="col-8 report-detail-heading">Report Details</h1>

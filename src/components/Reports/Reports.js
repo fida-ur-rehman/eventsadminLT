@@ -26,7 +26,7 @@ const Reports = (props) => {
                     <Dashhead id="3" />
                 </div>
 
-                <div className="col-10" ref={divref}>
+                <div className="col-10 container100" ref={divref}>
                     <h1 className="heading">Reports</h1>
 
                     <div className="tablediv">

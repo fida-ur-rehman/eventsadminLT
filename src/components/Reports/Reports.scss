@@ -11,8 +11,12 @@
         margin:3% 3%;
     }
 }
+
+.col-10{
+   overflow-y: scroll;
+
+}
 .tablediv{
-   
     margin:3% ;
     .table-row:hover{
     background-color: $lightPink;

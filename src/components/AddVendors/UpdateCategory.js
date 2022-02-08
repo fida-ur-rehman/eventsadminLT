@@ -6,6 +6,7 @@ import Dashhead from '../Dashhead/Dashhead'
 import {useForm} from 'react-hook-form'
 import { DataGrid } from '@mui/x-data-grid';
 import SimpleSnackbar from '../utils/Snackbar'
+import {connect} from 'react-redux'
 function UpdateCategory(props) {
     console.log(props);
     const [category,setCategory]=React.useState("")
@@ -40,6 +41,18 @@ function UpdateCategory(props) {
         })
     }
 
+    const handleDelete = ()=>{
+        axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/category/delete-category`,{categoryId:props.location.state._id})
+        .then(res=>{
+            console.log(res);
+            props.history.push("addcategories")
+            
+        })
+        .catch(err=>{
+            console.log(err.response);
+        })
+    }
+
     return (
         <div className="">
         <div className="row">
@@ -59,7 +72,12 @@ function UpdateCategory(props) {
             </div>
             </form>
         
-
+            <div style={{textAlign:"center"}}>
+               <h1>Or delete category</h1>
+               <p>Name: {props.location.state.name}</p>
+               <p>Approximation: {props.location.state.approximation}</p>
+               <Button onClick={()=>handleDelete()} variant="contained" color="error">Delete</Button>
+            </div>
 
 
 
@@ -70,7 +88,14 @@ function UpdateCategory(props) {
     )
 }
 
-export default UpdateCategory
+
+const mapStateToProps = ({EventUser})=>{
+    return {
+        user:EventUser
+    }
+}
+
+export default connect(mapStateToProps)(UpdateCategory)
 const columns = [
     { field: 'id', headerName: 'ID', width: 30 },
     { field: '_id', headerName: 'Object Id', width: 350 },

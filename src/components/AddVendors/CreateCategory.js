@@ -35,7 +35,7 @@ function CreateCategory(props) {
 
     const onSubmit = (data)=>{
         console.log(data);
-        axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/category/create-category`,{name: data.category,approximation:data.cost })
+        axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/category/create-category`,{name: data.category,approximation:data.cost,_id:data.categoryid })
         .then(res=>{
             console.log(res);
             if(res.data.msg==="Success"){
@@ -60,6 +60,7 @@ function CreateCategory(props) {
                 <h1>Add Categories</h1>
             
             <form onSubmit={handleSubmit(onSubmit)}>
+            <TextField className="my-3" {...register('categoryid')} fullWidth id="outlined-basic" label="category object id (optional)" variant="outlined" />
             <TextField error={errors.category?true:false} className="my-3" {...register('category',{required:true})} fullWidth id="outlined-basic" label="category" variant="outlined" />
             <TextField error={errors.cost?true:false} className="my-3" {...register('cost',{required:true})} fullWidth  id="outlined-basic" label="approximate cost ($)" variant="outlined" />
             <div style={{textAlign:"center"}}>

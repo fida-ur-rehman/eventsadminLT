@@ -35,7 +35,7 @@ function CreateCategory(props) {
 
     const onSubmit = (data)=>{
         console.log(data);
-        axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/category/create-category`,{name: data.category,approximation:data.cost })
+        axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/category/create-category`,{name: data.category,approximation:data.cost,_id:null })
         .then(res=>{
             console.log(res);
             if(res.data.msg==="Success"){

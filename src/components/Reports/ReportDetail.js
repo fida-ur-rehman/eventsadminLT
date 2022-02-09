@@ -23,7 +23,7 @@ const ReportDetail = (props) => {
                 console.log(err);
             })
         }else if(detail.collectionName==="Event"){
-            axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/event/single-event`,{eventId:detail.itemId},{headers:{token:process.env.REACT_APP_TOKEN}})
+            axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/event/single-event`,{eventId:detail.itemId})
             .then(res=>{
                 if(res.data.result){
                     setBid(res.data.result)

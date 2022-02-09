@@ -31,6 +31,29 @@
             color:#a1a1a1;
         }
     }
+    .event-item-grey{
+        background: linear-gradient(to bottom right, rgb(231, 231, 231),#f6f6f6);
+        padding:2%;
+        margin:1% 4%;
+        .row{
+            padding:0 2%;
+            .event-heading{
+                font-weight: bolder;
+                font-size: 1.5em;
+                color: black;
+            }
+            .bids-subs{
+                margin: 0 auto;
+                font-weight: 500;
+                color:black;
+            }
+           
+        }
+       
+        .description{
+            color:#a1a1a1;
+        }
+    }
     .event-item:hover{
         cursor: pointer;
         background: linear-gradient(to bottom right, $pink,$lightPink);

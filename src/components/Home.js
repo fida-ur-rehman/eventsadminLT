@@ -61,7 +61,7 @@ const Home = (props) => {
         {
           data.length>0?(
             data.map((item,index)=>(
-              <div key={index} className="col-5 shadow event-item" onClick={()=>props.history.push('eventdetail',item)}>
+              <div key={index} className={item.status.toLowerCase()!=="over"?"col-5 shadow event-item":"col-5 shadow event-item-grey"} onClick={()=>props.history.push('eventdetail',item)}>
                 <div className="row">
                     <p className="event-heading">{item.name} </p>
                     <p className="bids-subs">Bids  {item.totalBids}</p>

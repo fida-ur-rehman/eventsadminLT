@@ -3,6 +3,7 @@ import Dashhead from '../Dashhead/Dashhead';
 import axios from 'axios'
 import moment from 'moment'
 import "./Reports.scss"
+import { DataGrid } from '@mui/x-data-grid';
 const Reports = (props) => {
     const [data,setData] = React.useState([])
     const divref = React.useRef(null)
@@ -12,7 +13,8 @@ const Reports = (props) => {
         .then(res=>{
             console.log(res);
             if(res.data.result.length >0){
-                setData(res.data.result)
+                let arr = res.data.result.map((item,index)=>({id:index+1,...item}))
+                setData(arr)
             }
         })
         .catch(err=>{
@@ -27,38 +29,18 @@ const Reports = (props) => {
                 </div>
 
                 <div className="col-10 container100" ref={divref}>
-                    <h1 className="heading">Reports</h1>
-
-                    <div className="tablediv">
-                    <table  className="ui celled table">
-                                <thead>
-                                    <tr>
-                                        <th>Sr No</th>
-                                        <th>Collection</th>
-                                        <th>Reason</th>
-                                        <th>Time</th>
-                                        <th>Status</th>
-                                    </tr>
-                               </thead>
-                    <tbody>
-                    {
-                        data.length>0?(
-                            data.map((item,index)=>(    
-                                  <tr onClick={()=>props.history.push("/reportdetail",item)} className="table-row" key={index}>
-                                        <td data-label="Sr No">{index+1}</td>
-                                        <td data-label="Collection">{item.collectionName}</td>
-                                        <td data-label="Reason">{item.reason}</td>
-                                        <td data-label="Time">{moment.parseZone(item.createdAt).local().format("dddd, MMMM Do YYYY, h:mm:ss a")}</td>
-                                        <td data-label="Status">{item.status}</td>
-                                        
-                                   </tr>
-                               
-                            ))
-                        ):null
-                    }
-                    </tbody>
-                    </table>
+                    <h1 className="heading" style={{textAlign:"center"}}>Reports</h1>
+                    <div className="m-auto" style={{ height: '80%', width: '80%' }}>
+                    <DataGrid
+                        rows={data}
+                        columns={columns}
+                        pageSize={12}
+                        rowsPerPageOptions={[5]}
+                        onRowClick={(para)=>props.history.push("/reportdetail",para.row)}
+                    />
                     </div>
+
+                    
                     
                 </div>
 
@@ -68,3 +50,14 @@ const Reports = (props) => {
 }
 
 export default Reports;
+const columns = [
+    { field: 'id', headerName: 'ID', width: 30 },
+    { field: 'collectionName', headerName: 'Collection', width: 350 },
+    { field: 'reason', headerName: 'Reason', width: 300 },
+    { field: 'createdAt', headerName: 'Time', width: 300 },
+    { field: 'status', headerName: 'Status', width: 200 },
+    
+  ];
+
+  //<td data-label="Time">{moment.parseZone(item.createdAt).local().format("dddd, MMMM Do YYYY, h:mm:ss a")}</td>
+  //

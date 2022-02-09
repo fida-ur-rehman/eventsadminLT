@@ -15,6 +15,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Autocomplete from '@mui/material/Autocomplete';
 import DoneIcon from '@mui/icons-material/Done';
+import SimpleSnackbar from '../utils/Snackbar'
 import {connect} from 'react-redux'
 //"61d87a153e5888396864922e"
 function AddServices(props) {
@@ -25,6 +26,7 @@ function AddServices(props) {
     const [unit, setUnit] = React.useState('');
     const SiUnits = ['ml','L','kg','lbs','g','cm','m','inch',"pcs", 'boxes']
     const [mainCategory,setMainCategory] =React.useState([])
+    const [open,setOpen]=React.useState(false)
     const [mainCategoryR,setMainCategoryR]=React.useState("")
     const [error,setError]=React.useState("")
 
@@ -60,6 +62,7 @@ function AddServices(props) {
         axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/service/admin-createService`,{userId:userInfo._id,mobileNo:userInfo.mobileNo,categoryId:categoryId?categoryId:"",category:mainCategoryR,subCategory:data.subcategory,quantity:data.quantity,unit,price:data.price},{headers:{token:props.user.user}})
         .then(res=>{
             console.log(res)
+            setOpen(true)
             setServices([...service,res.data.result])
         })
         .catch(err=>{
@@ -73,9 +76,23 @@ function AddServices(props) {
         
     }
 
-    const handleServicesDelete = (sub)=>{
-        let serv = service.filter(item=>item.subcategory!==sub)
-        setServices(serv)
+    const handleServicesDelete = (item)=>{
+        console.log(item);
+        axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/service/admin-delete-service`,{serviceId:item._id},{headers:{token:props.user.user}})
+        .then(res=>{
+            console.log(res);
+            let serv = service.filter(it=>it._id!==item._id)
+         console.log(serv);
+         setServices(serv)
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+         
+        // setServices(serv)
+        // let serv = service.filter(it=>it._id!==item._id)
+        // console.log(serv);
+        // setServices(serv)
     }
 
     return (
@@ -86,6 +103,7 @@ function AddServices(props) {
                 </div>
 
                 <div className="col-10 container100 vendordiv">
+                <SimpleSnackbar open={open} setOpen={setOpen} message="Category added" />
                     <h1>Add Services</h1>
                     <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="auto-complete-div">
@@ -145,7 +163,7 @@ function AddServices(props) {
                                         <td data-label="Reason">{item.subCategory}</td>
                                         <td data-label="Time">{item.quantity} {item.unit}</td>
                                         <td data-label="Time">{item.price}</td>
-                                        <td onClick={()=>handleServicesDelete(item.subcategory)}><span className="bid"><i class="fa fa-trash" aria-hidden="true"></i></span></td>
+                                        <td onClick={()=>handleServicesDelete(item)}><span className="bid"><i class="fa fa-trash" aria-hidden="true"></i></span></td>
                                    </tr>
                                
                             ))

@@ -21,6 +21,7 @@ import {connect} from 'react-redux'
 //"61d87a153e5888396864922e"
 function AddServices(props) {
     console.log(props);
+    const [success,setSuccess]=React.useState("")
     const userInfo = props.location.state.result
     const {register,handleSubmit,formState:{errors}}=useForm()
     const [service,setServices]=React.useState([])
@@ -137,7 +138,7 @@ function AddServices(props) {
                 </FormControl>
                     <TextField {...register('price',{required:true})} fullWidth className="my-2" id="outlined-basic" variant="outlined" label="Price" />
                     {error.length>0?<Alert className="alert" severity="error">{error}</Alert>:null}
-
+                    {success.length>0?<Alert className="alert" severity="success">{success}</Alert>:null}
 
                     <div style={{textAlign:"center"}}>
                     <Button className="btn" type="submit" variant="contained">Add Service</Button>
@@ -180,7 +181,13 @@ function AddServices(props) {
                     <div style={{position:"fixed",bottom:"5%",right:"5%"}}>
               <Tooltip title="Add Services">
               <Fab 
-              onClick={()=>props.history.push("addvendors")} color="primary" variant="extended">
+              onClick={()=>{
+                setSuccess("Services for vendor added successfully")
+                setTimeout(() => {
+                    props.history.push("addvendors")
+                    
+                }, 2000);
+                  }} color="primary" variant="extended">
                 Done
                 <DoneIcon sx={{ ml: 1 }} />
                 </Fab>

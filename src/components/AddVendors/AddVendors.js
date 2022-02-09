@@ -10,13 +10,18 @@ import Alert from '@mui/material/Alert'
 function AddVendors(props) {
     const {register,handleSubmit,formState:{errors}}=useForm()
     const [error,setError]=React.useState("")
+    const [success,setSuccess]=React.useState("")
     const onSubmit = (data)=>{
         console.log(data);
         const {name,email,city,organization,address,country,mobileno}=data
         axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/user/createUser`,{name,email,city,organisation:organization,address,country,mobileNo:mobileno})
         .then(res=>{
         console.log(res);
-        props.history.push('addservices',res.data)
+        setSuccess("Vendor created successfully")
+        setTimeout(() => {
+            props.history.push('addservices',res.data)
+            
+        }, 2000);
 
         })
         .catch(err=>{
@@ -41,6 +46,7 @@ function AddVendors(props) {
                     <TextField error={errors.country?true:false} {...register('country',{required:true})} fullWidth className="my-2" id="outlined-basic" variant="outlined" label="country" />
                     <TextField error={errors.organization?true:false} {...register('organization',{required:true})} fullWidth className="my-2" id="outlined-basic" variant="outlined" label="Organization" />
                     <TextField error={errors.address?true:false} {...register('address',{required:true})} fullWidth className="my-2" id="outlined-basic" variant="outlined" label="Address" />
+                    {success.length>0?<Alert className="alert" severity="success">{success}</Alert>:null}
                     <Button className="btn" type="submit" variant="contained">Submit</Button>
                     </form>
 

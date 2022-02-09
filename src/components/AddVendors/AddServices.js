@@ -16,6 +16,7 @@ import Select from '@mui/material/Select';
 import Autocomplete from '@mui/material/Autocomplete';
 import DoneIcon from '@mui/icons-material/Done';
 import SimpleSnackbar from '../utils/Snackbar'
+import Alert from '@mui/material/Alert'
 import {connect} from 'react-redux'
 //"61d87a153e5888396864922e"
 function AddServices(props) {
@@ -67,6 +68,7 @@ function AddServices(props) {
         })
         .catch(err=>{
             console.log(err.response)
+            setError("Something went wrong check your inputs")
         })
        }
         //61d3ec1b9efbdd00043c8031
@@ -87,6 +89,7 @@ function AddServices(props) {
         })
         .catch(err=>{
             console.log(err);
+            setError("Something went wrong")
         })
          
         // setServices(serv)
@@ -133,6 +136,7 @@ function AddServices(props) {
                     </Select>
                 </FormControl>
                     <TextField {...register('price',{required:true})} fullWidth className="my-2" id="outlined-basic" variant="outlined" label="Price" />
+                    {error.length>0?<Alert className="alert" severity="error">{error}</Alert>:null}
 
 
                     <div style={{textAlign:"center"}}>
@@ -184,7 +188,6 @@ function AddServices(props) {
             </div>
                 </div>
                 
-
 
                 </div>
                 </div>

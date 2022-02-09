@@ -7,6 +7,7 @@ import {useForm} from 'react-hook-form'
 import { DataGrid } from '@mui/x-data-grid';
 import SimpleSnackbar from '../utils/Snackbar'
 import {connect} from 'react-redux'
+import Alert from '@mui/material/Alert'
 function UpdateCategory(props) {
     console.log(props);
     const [category,setCategory]=React.useState("")
@@ -38,6 +39,7 @@ function UpdateCategory(props) {
         })
         .catch(err=>{
             console.log(err);
+            setError("Something went wrong check your inputs")
         })
     }
 
@@ -50,6 +52,7 @@ function UpdateCategory(props) {
         })
         .catch(err=>{
             console.log(err.response);
+            setError("Something went wrong check your inputs")
         })
     }
 
@@ -78,7 +81,7 @@ function UpdateCategory(props) {
                <p>Approximation: {props.location.state.approximation}</p>
                <Button onClick={()=>handleDelete()} variant="contained" color="error">Delete</Button>
             </div>
-
+            {error.length>0?<Alert className="alert" severity="error">{error}</Alert>:null}
 
 
 

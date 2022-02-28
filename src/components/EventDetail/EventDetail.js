@@ -57,6 +57,7 @@ const EventDetail = (props) => {
             </div>
 
             <div className="organizerinfo">
+            <p>Organiser Name: {event.organiserName}</p>
             <p>Email : {event.email}</p>
             <p>Organiser Address : {event.address}</p>
             <p>Organiser Mobile No : {event.mobileNo}</p>

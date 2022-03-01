@@ -81,7 +81,7 @@ function AddServices(props) {
 
     const handleServicesDelete = (item)=>{
         console.log(item);
-        axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/service/admin-delete-service`,{serviceId:item._id},{headers:{token:props.user.user}})
+        axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/service/admin-deleteService`,{serviceId:item._id},{headers:{token:props.user.user}})
         .then(res=>{
             console.log(res);
             let serv = service.filter(it=>it._id!==item._id)

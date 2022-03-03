@@ -6,7 +6,7 @@ import GoogleMapReact from 'google-map-react';
 import Profile from '../images/profile.png'
 import ModalExampleBasic from '../utils/ModalExampleBasic';
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+import Marker from '../utils/Marker/Marker'
 
 
 
@@ -48,10 +48,10 @@ const EventDetail = (props) => {
                 defaultCenter={{lat:event.location.latitude,lng:event.location.longitude}}
                 defaultZoom={25}
                 >
-                <AnyReactComponent
-                    lat={59.955413}
-                    lng={30.337844}
-                    text="My Marker"
+                <Marker
+                    lat={event.location.latitude}
+                    lng={event.location.longitude}
+                    text="Event Location"
                 />
                 </GoogleMapReact>
             </div>

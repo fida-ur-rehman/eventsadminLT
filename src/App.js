@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.scss';
-import {Route,Switch} from 'react-router-dom'
+import {Route,Switch,Redirect} from 'react-router-dom'
 import Login from './components/Login/Login'
 import Home from './components/Home'
 import EventDetail from './components/EventDetail/EventDetail';
@@ -15,7 +15,8 @@ import 'semantic-ui-css/semantic.min.css'
 function App() {
   return (
     <Switch>
-    <Route exact path="/" component={Login} />
+    <Route exact path="/" render={()=><Redirect to="/adminlogin" />} />
+    <Route exact path="/adminlogin" component={Login} />
     <Route path="/home" component={Home} />
     <Route path="/eventdetail" component={EventDetail} />
     <Route path="/reports" component={Reports} />

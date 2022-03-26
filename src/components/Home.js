@@ -11,8 +11,17 @@ const Home = (props) => {
     const [location,setLocation]=React.useState({center:{lat:59.95,lng:30.33},zoom:11})
     const [data,setData]=React.useState([])
     const divref = React.useRef(null)
-    console.log(divref);
+    const [error,setError] = React.useState("")
+
+    const getLocation = async ()=>{
+      window.navigator.geolocation.getCurrentPosition((loca)=>{
+        console.log(loca)
+        setLocation({center:{lat:loca.coords.latitude,lng:loca.coords.longitude},zoom:18})
+      },(err)=>setError(err.message));
+    }
+
     React.useEffect(()=>{
+      getLocation()
       axios.get(`${process.env.REACT_APP_DEVELOPMENT}/api/event/all-event-bids`,{headers:{token:process.env.REACT_APP_TOKEN}})
       .then(res=>{
        

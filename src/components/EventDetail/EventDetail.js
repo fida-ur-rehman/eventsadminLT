@@ -35,8 +35,8 @@ const EventDetail = (props) => {
 
             <div className="service row">
             {
-                event.reqServices.length > 0?(
-                    event.reqServices.map(item=><span className="servicetag"><i class="fas fa-tags"></i> {item}</span>)
+                event.serviceTags.length > 0?(
+                    event.serviceTags.map(item=><span className="ml-2 servicetag"><i class="fas fa-tags"></i>{`${item.quantity} ${item.unit} of ${item.name} - ${item.price}`} </span>)
                 ):null
             }
             </div>
@@ -115,7 +115,10 @@ const EventDetail = (props) => {
                                             <div key={ind} className="row service-container">
                                                 <p className="col-1">{ind+1}</p>
                                                 <p className="col-3">{service.category}</p>
-                                                <p className="col-3">{service.subCategory}</p>
+                                                <p className="col-3">
+                                                    {service.subCategory}<br />
+                                                    <span style={{color:"#cccf"}}>{service.description}</span>
+                                                    </p>
                                                 <p className="col-2">{service.quantity}</p>
                                                 <p className="col-3">{service.price}$</p>
                                             </div>

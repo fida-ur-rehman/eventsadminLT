@@ -74,7 +74,7 @@ function AddServices(props) {
        }
         //61d3ec1b9efbdd00043c8031
     }
-
+    console.log("unit is",unit)
     const handleCreateUser=()=>{
         
     }
@@ -120,8 +120,33 @@ function AddServices(props) {
                     />
                     </div>
                     <TextField {...register('subcategory',{required:true})} fullWidth className="my-2" id="outlined-basic" variant="outlined" label="Sub Category" />
+                    <TextField {...register('description',{required:true})} fullWidth className="my-2" id="outlined-basic" variant="outlined" label="Description" />
                     <TextField {...register('quantity',{required:true})} fullWidth className="my-2" id="outlined-basic" variant="outlined" label="Quantity" />
-                    <FormControl className="my-3" fullWidth> 
+                    <div className="auto-complete-div">
+                    {/* <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                    <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={mainCategoryR}
+                    label="Age"
+                    onChange={(e)=>setMainCategoryR(e)}
+                    >
+                    {
+                        mainCategory.map((option) => <MenuItem value = {option.name}>{option.name}</MenuItem>)
+                    }
+                    </Select>
+                </FormControl> */}
+                    <Autocomplete
+                    onInputChange={(e,n)=>setUnit(n)}
+                    id="free-solo-demo"
+                    freeSolo
+                    fullWidth
+                    options={SiUnits.map((option) => option)}
+                    renderInput={(params) => <TextField {...params} label="Select Unit" />}
+                />
+                </div>
+                    {/* <FormControl className="my-3" fullWidth> 
                     <InputLabel id="demo-simple-select-label">Select Unit</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"
@@ -135,7 +160,7 @@ function AddServices(props) {
                         SiUnits.map((item,index)=><MenuItem key={index} value={item}>{item}</MenuItem>)
                     }
                     </Select>
-                </FormControl>
+                </FormControl> */}
                     <TextField {...register('price',{required:true})} fullWidth className="my-2" id="outlined-basic" variant="outlined" label="Price" />
                     {error.length>0?<Alert className="alert" severity="error">{error}</Alert>:null}
                     {success.length>0?<Alert className="alert" severity="success">{success}</Alert>:null}

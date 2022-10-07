@@ -56,12 +56,7 @@ function AddServices(props) {
        if(mainCategoryR ==="" || unit ===''){
            setError("Fill all details")
        }else{
-        let categoryId=null;
-        let arr = mainCategory.filter(item=>item.name===mainCategoryR)
-        if(arr.length>0){
-            categoryId=arr[0]._id
-        }
-        axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/service/admin-createService`,{userId:userInfo._id,mobileNo:userInfo.mobileNo,categoryId:categoryId?categoryId:"",category:mainCategoryR,subCategory:data.subcategory,quantity:data.quantity,unit,price:data.price},{headers:{token:props.user.user}})
+        axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/service/admin-createService`,{userId:userInfo._id,mobileNo:userInfo.mobileNo,category:mainCategoryR,subCategory:data.subcategory,quantity:data.quantity,unit,price:data.price,description:data.description},{headers:{token:props.user.user}})
         .then(res=>{
             console.log(res)
             setOpen(true)
@@ -71,6 +66,21 @@ function AddServices(props) {
             console.log(err.response)
             setError("Something went wrong check your inputs")
         })
+        // let categoryId=null;
+        // let arr = mainCategory.filter(item=>item.name===mainCategoryR)
+        // if(arr.length>0){
+        //     categoryId=arr[0]._id
+        // }
+        // axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/service/admin-createService`,{userId:userInfo._id,mobileNo:userInfo.mobileNo,categoryId:categoryId?categoryId:"",category:mainCategoryR,subCategory:data.subcategory,quantity:data.quantity,unit,price:data.price},{headers:{token:props.user.user}})
+        // .then(res=>{
+        //     console.log(res)
+        //     setOpen(true)
+        //     setServices([...service,res.data.result])
+        // })
+        // .catch(err=>{
+        //     console.log(err.response)
+        //     setError("Something went wrong check your inputs")
+        // })
        }
         //61d3ec1b9efbdd00043c8031
     }

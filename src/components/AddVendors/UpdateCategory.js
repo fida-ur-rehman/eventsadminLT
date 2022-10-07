@@ -29,6 +29,7 @@ function UpdateCategory(props) {
     React.useEffect(()=>{   
         setValue("category",props.location.state.name)
         setValue("cost",props.location.state.approximation)
+        setCurrency(props.location.state.currency)
     },[])
 
     const onSubmit = (data)=>{

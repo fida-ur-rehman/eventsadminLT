@@ -46,7 +46,7 @@ const EventDetail = (props) => {
                 <GoogleMapReact
                 bootstrapURLKeys={{ key: 'AIzaSyCon5_1FtHKMlr3goiHqkWjaD63WSCvxJE'}}
                 defaultCenter={{lat:event.location.latitude,lng:event.location.longitude}}
-                defaultZoom={25}
+                defaultZoom={18}
                 >
                 <Marker
                     lat={event.location.latitude}

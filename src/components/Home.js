@@ -8,7 +8,7 @@ import OwnMarker from './utils/Marker/OwnMarker';
 import Marker from './utils/Marker/Marker'
 
 const Home = (props) => {
-    const [location,setLocation]=React.useState({center:{lat:59.95,lng:30.33},zoom:11})
+    const [location,setLocation]=React.useState(null)
     const [data,setData]=React.useState([])
     const divref = React.useRef(null)
     const [error,setError] = React.useState("")
@@ -33,6 +33,8 @@ const Home = (props) => {
       })
     },[])
 
+    console.log(location)
+
     return (
         <div className="homeclass">
             <div className="row">
@@ -45,7 +47,7 @@ const Home = (props) => {
             <h1 className="heading">
                Nearest Events
             </h1>
-            <div style={{ height: '50vh', width: '100%' }}>
+            {location&&<div style={{ height: '50vh', width: '100%' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyBOzAkOqCVMjP4hXIkabfHi40vJ8afKKZ4'}}
           defaultCenter={location.center}
@@ -64,7 +66,7 @@ const Home = (props) => {
           />
           ))}
         </GoogleMapReact>
-      </div>
+      </div>}
 
         <div className="event row">
         {

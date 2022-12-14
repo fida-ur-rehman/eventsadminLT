@@ -8,8 +8,8 @@ const ReportDetail = (props) => {
     
     let detail = props.location.state;
     console.log(detail)
-    const [bid,setBid]= React.useState([])
-    const [event,setEvent]=React.useState([])
+    const [bid,setBid]= React.useState(null)
+    const [event,setEvent]=React.useState(null)
     React.useEffect(()=>{
         if(detail.collectionName==="Bid"){
             axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/bid/single-bid`,{bidId:detail.itemId},{headers:{token:process.env.REACT_APP_TOKEN}})
@@ -25,6 +25,7 @@ const ReportDetail = (props) => {
         }else if(detail.collectionName==="Event"){
             axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/event/single-event`,{eventId:detail.itemId})
             .then(res=>{
+                console.log("singleevent",res)
                 if(res.data.result){
                     setBid(res.data.result)
                 }
@@ -41,7 +42,7 @@ const ReportDetail = (props) => {
     const renderContent = ()=>{
         //Object.keys(bid).length>2
         if(detail.collectionName==="Bid"){
-            return <div>
+            return bid&&<div>
             <p>{bid.description}</p>
             <p>Event Id: {bid.eventId}</p>
             <table className="ui celled table">
@@ -57,7 +58,7 @@ const ReportDetail = (props) => {
             {
                 bid.services.length>0?(
                     bid.services.map((item,index)=>(
-                        <tr>
+                        <tr key={index}>
             <td>{item.category}</td>
             <td>{item.subCategory}</td>
             <td>{item.price}</td>
@@ -70,14 +71,14 @@ const ReportDetail = (props) => {
 </table>
         </div>
         }else if(detail.collectionName==="Event"){
-            return <div>
+            return bid?<div>
             <p><b>Event Name: </b>{bid.name}</p>
             <p><b>Event Email: </b>{bid.email}</p>
             <p><b>Event description: </b>{bid.description}</p>
             <p><b>Event address: </b>{bid.eventAddress}</p>
             <p><b>Organizer name: </b>{bid.organiserName}</p>
             <p><b>Organizer Id : </b>{bid.organiserId}</p>
-            </div>
+            </div>:<p>Event doesn't exist</p>
         }
     }
 

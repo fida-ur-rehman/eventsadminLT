@@ -23,7 +23,7 @@ function AddServices(props) {
     console.log(props);
     const [success,setSuccess]=React.useState("")
     const userInfo = props.location.state.result
-    const {register,handleSubmit,formState:{errors}}=useForm()
+    const {register,handleSubmit,formState:{errors},setValue}=useForm()
     const [service,setServices]=React.useState([])
     const [unit, setUnit] = React.useState('');
     const SiUnits = ['ml','L','kg','lbs','g','cm','m','inch',"pcs", 'boxes']
@@ -61,6 +61,12 @@ function AddServices(props) {
             console.log(res)
             setOpen(true)
             setServices([...service,res.data.result])
+            setMainCategoryR("")
+            setUnit("")
+            setValue("subcategory","")
+            setValue("description","")
+            setValue("quantity","")
+            setValue("price","")
         })
         .catch(err=>{
             console.log(err.response)
@@ -122,6 +128,7 @@ function AddServices(props) {
                     <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="auto-complete-div">
                         <Autocomplete
+                        inputValue={mainCategoryR}
                         onInputChange={(e,n)=>setMainCategoryR(n)}
                         id="free-solo-demo"
                         freeSolo
@@ -149,6 +156,7 @@ function AddServices(props) {
                 </FormControl> */}
                     <Autocomplete
                     onInputChange={(e,n)=>setUnit(n)}
+                    inputValue={unit}
                     id="free-solo-demo"
                     freeSolo
                     fullWidth

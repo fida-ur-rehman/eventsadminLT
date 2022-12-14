@@ -5,15 +5,23 @@ import moment from 'moment'
 import GoogleMapReact from 'google-map-react';
 import Profile from '../images/profile.png'
 import ModalExampleBasic from '../utils/ModalExampleBasic';
-
+import axios from 'axios'
 import Marker from '../utils/Marker/Marker'
 
 
 
 
 const EventDetail = (props) => {
-    let event = props.location.state
+    const [event,setEvent] = React.useState(props.location.state)
     console.log("props",props);
+
+    React.useEffect(()=>{
+        axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/event/single-event`,{eventId:event._id})
+        .then(res=>{
+            console.log("singleevent",res)
+            setEvent(res.data.result)
+        })
+    },[])
 
     const handleDelete = ()=>{
         

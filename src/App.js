@@ -10,6 +10,7 @@ import AddVendors from './components/AddVendors/AddVendors';
 import AddServices from './components/AddVendors/AddServices';
 import CreateCategory from './components/AddVendors/CreateCategory';
 import UpdateCategory from './components/AddVendors/UpdateCategory'
+import Vendors from './components/Vendors/Vendors';
 import 'semantic-ui-css/semantic.min.css'
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
     <Route path="/addservices"  component={AddServices} />
     <Route path="/addcategories"  component={CreateCategory} />
     <Route path="/updatecategory" component={UpdateCategory} />
+    <Route path="/vendors" component={Vendors} />
     </Switch>
   );
 }

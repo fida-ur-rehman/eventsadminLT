@@ -4,6 +4,7 @@ import Dashhead from '../Dashhead/Dashhead';
 import axios from 'axios'
 import ModalExampleBasic from '../utils/ModalExampleBasic'
 import moment from 'moment'
+import {connect} from 'react-redux'
 const ReportDetail = (props) => {
     
     let detail = props.location.state;
@@ -12,7 +13,7 @@ const ReportDetail = (props) => {
     const [event,setEvent]=React.useState(null)
     React.useEffect(()=>{
         if(detail.collectionName==="Bid"){
-            axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/bid/single-bid`,{bidId:detail.itemId},{headers:{token:process.env.REACT_APP_TOKEN}})
+            axios.post(`${process.env.REACT_APP_DEVELOPMENT}/api/bid/single-bid`,{bidId:detail.itemId},{headers:{token:props.user.user}})
             .then(res=>{
                 console.log(res);
                 if(res.data.result){
@@ -129,5 +130,9 @@ const ReportDetail = (props) => {
         </div>
     );
 }
-
-export default ReportDetail;
+const mapStateToProps = ({EventUser})=>{
+    return {
+        user:EventUser
+    }
+}
+export default connect(mapStateToProps)(ReportDetail);

@@ -6,7 +6,7 @@ import axios from 'axios'
 import moment from 'moment'
 import OwnMarker from './utils/Marker/OwnMarker';
 import Marker from './utils/Marker/Marker'
-
+import {connect} from 'react-redux'
 const Home = (props) => {
     const [location,setLocation]=React.useState(null)
     const [data,setData]=React.useState([])
@@ -22,7 +22,7 @@ const Home = (props) => {
 
     React.useEffect(()=>{
       getLocation()
-      axios.get(`${process.env.REACT_APP_DEVELOPMENT}/api/event/all-event-bids`,{headers:{token:process.env.REACT_APP_TOKEN}})
+      axios.get(`${process.env.REACT_APP_DEVELOPMENT}/api/event/all-event-bids`,{headers:{token:props.user.user}})
       .then(res=>{
        
         if(res.data.result.length>0){
@@ -60,6 +60,7 @@ const Home = (props) => {
       />
           {data.map((marker,index)=>(
             <Marker
+            key={index}
             lat={marker.location.latitude}
             lng={marker.location.longitude}
             text={marker.name}
@@ -97,5 +98,9 @@ const Home = (props) => {
         </div>
     );
 }
-
-export default Home;
+const mapStateToProps = ({EventUser})=>{
+  return {
+      user:EventUser
+  }
+}
+export default connect(mapStateToProps)(Home);

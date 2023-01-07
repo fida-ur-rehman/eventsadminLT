@@ -18,6 +18,10 @@ const Dashhead = ({id,history,height}) => {
                 <p><i className="fas fa-clipboard-list"></i> <span style={{marginLeft:'10px'}}>Reports</span></p>
             </div>
 
+            <div className={id==="7"?"linkdivActive":"linkdiv"} onClick={()=>history.push("/vendors")}>
+                <p><i className="fas fa-clipboard-list"></i> <span style={{marginLeft:'10px'}}>Vendors</span></p>
+            </div>
+
             <div className={id==="4"?"linkdivActive":"linkdiv"} onClick={()=>history.push("/addvendors")}>
                 <p><i className="fas fa-clipboard-list"></i> <span style={{marginLeft:'10px'}}>Add Vendors</span></p>
             </div>

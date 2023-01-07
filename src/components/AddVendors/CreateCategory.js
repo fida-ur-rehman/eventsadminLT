@@ -9,6 +9,7 @@ import SimpleSnackbar from '../utils/Snackbar'
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+import {connect} from 'react-redux'
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 function CreateCategory(props) {
     const [category,setCategory]=React.useState("")
@@ -106,8 +107,12 @@ function CreateCategory(props) {
         </div>
     )
 }
-
-export default CreateCategory
+const mapStateToProps = ({EventUser})=>{
+    return {
+        user:EventUser
+    }
+}
+export default connect(mapStateToProps)(CreateCategory)
 const columns = [
     { field: 'id', headerName: 'ID', width: 30 },
     { field: '_id', headerName: 'Object Id', width: 350 },

@@ -8,7 +8,7 @@ import "./AddVendors.scss"
 import Alert from '@mui/material/Alert'
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
-
+import {connect} from 'react-redux'
 function AddVendors(props) {
     const {register,handleSubmit,formState:{errors}}=useForm()
     const [error,setError]=React.useState("")
@@ -126,8 +126,12 @@ function AddVendors(props) {
                 </div>
     )
 }
-
-export default AddVendors
+const mapStateToProps = ({EventUser})=>{
+    return {
+        user:EventUser
+    }
+}
+export default connect(mapStateToProps)(AddVendors)
 const countries = [
     { code: 'AD', label: 'Andorra', phone: '376' },
     {
